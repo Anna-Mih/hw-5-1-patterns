@@ -4,11 +4,11 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
+import lombok.Data;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
-import javax.xml.crypto.Data;
 import java.time.Duration;
 import java.util.Locale;
 
@@ -29,13 +29,13 @@ public class OrderTest {
 
         form.$("[data-test-id=city] input").val(user.getCity());
         form.$("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
-        form.$("[data-test-id='date'] input").val(user.getDate());
+        form.$("[data-test-id='date'] input").val(DataGenerator.generateDate(4));
         form.$("[data-test-id=name] input").val(user.getName());
         form.$("[data-test-id=phone] input").val(user.getPhone());
         form.$("[data-test-id=agreement]").click();
         form.$(byText("Запланировать")).click();
         $x("//div [@data-test-id=\"success-notification\"]").should(visible, Duration.ofSeconds(15));
-        $x("//div [@data-test-id=\"success-notification\"]").should(text("Встреча успешно запланирована на " + user.getDate()));
+        $x("//div [@data-test-id=\"success-notification\"]").should(text("Встреча успешно запланирована на " + DataGenerator.generateDate(4)));
         //Перепланируем дату
         $x("//input [@placeholder=\"Дата встречи\"]").doubleClick();
         $x("//input [@placeholder=\"Дата встречи\"]").sendKeys(Keys.BACK_SPACE);

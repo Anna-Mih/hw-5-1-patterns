@@ -9,6 +9,5 @@ import lombok.RequiredArgsConstructor;
 public class UserGenerator {
     private final String city;
     private final String phone;
-    private final String date;
     private final String name;
 }

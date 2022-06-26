@@ -13,7 +13,7 @@ public class DataGenerator {
         String planningDate = generateDate(days);
         String phone = generatePhone();
         String name = generateName();
-        UserGenerator user = new UserGenerator(city, phone, planningDate, name);
+        UserGenerator user = new UserGenerator(city, phone, name);
         return user;
     }
 
